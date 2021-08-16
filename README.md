@@ -25,3 +25,5 @@ tsc -w
 ## 5 타입도 변수에 담아 쓰기 / type 키워드 써서 & readonly
 
 ## 6. Literal Types로 만드는 const 변수 유사품
+
+## 7. 함수와 methods에 type alias 지정하는 법

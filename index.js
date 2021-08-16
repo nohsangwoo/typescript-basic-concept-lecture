@@ -174,3 +174,38 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     // type error 발생 안함
     myFunction(data2.name);
 }
+// ## 7. 함수와 methods에 type alias 지정하는 법
+{
+    var myfunction = function (a) {
+        return 1;
+    };
+    var memberInformation = {
+        name: 'kim',
+        plusOne: function (a) {
+            return a + 1;
+        },
+        changeName: function () {
+            console.log('hi');
+        },
+    };
+    console.log('--------------- end of #6 숙제 1 ---------------');
+    console.log(memberInformation.plusOne(1));
+    console.log('--------------- end of #6 숙제 1 ---------------\n\n');
+    var cutZero = function (x) {
+        var result = x.replace(/^0+/, '');
+        return result;
+    };
+    var removeDash = function (x) {
+        var result = x.replace(/-/g, '');
+        return parseFloat(result);
+    };
+    var fixNumber = function (phoneNumber, cutZeroFunc, removeDashFunc) {
+        var result;
+        result = cutZeroFunc(phoneNumber);
+        result = removeDashFunc(result);
+        return result;
+    };
+    console.log('--------------- end of #6 숙제 2 ---------------');
+    console.log(fixNumber('010-1111-2222', cutZero, removeDash));
+    console.log('--------------- end of #6 숙제 2 ---------------\n\n');
+}
