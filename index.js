@@ -129,3 +129,18 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     //   console.log(homework2(민수쌤2)); //type error
     console.log('--------------- end of #4 숙제 2 ---------------\n\n');
 }
+// ## 5. 타입도 변수에 담아 쓰기 / type 키워드 써서 & readonly
+{
+    var animal = 123;
+    var family = {
+        name: 'noh',
+        age: 33,
+    };
+    var phone = { name: 'iphone' };
+    var person = 'noh';
+    person = 33;
+    var position = {
+        x: 10,
+        y: 20,
+    };
+}

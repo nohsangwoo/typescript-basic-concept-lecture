@@ -163,3 +163,47 @@
   //   console.log(homework2(민수쌤2)); //type error
   console.log('--------------- end of #4 숙제 2 ---------------\n\n');
 }
+
+// ## 5. 타입도 변수에 담아 쓰기 / type 키워드 써서 & readonly
+{
+  // alias 네이밍은 첫글자가 대문자(매우 권장, 암묵적 약속)
+  type AnimalType = string | number | undefined;
+  let animal: AnimalType = 123;
+
+  type FamilyType = {
+    name: string;
+    age: number;
+  };
+  let family: FamilyType = {
+    name: 'noh',
+    age: 33,
+  };
+
+  //  오브젝트안의 내용 변경불가능 하게 설정
+  type PhoneType = {
+    // 수정 불가능하다고 설정
+    readonly name: string;
+    // 옵셔널 : 해당 키는 없을수도 있음, 즉 undefined값이 들어갈 수 있음(즉 number | undefined 와 같은 의미다)
+    weight?: number;
+  };
+
+  let phone: PhoneType = { name: 'iphone' };
+  //  valilla javascript에선 가능 하지만 type script에서 변경 불가능하게 설정
+  // type error 발생
+  //   phone.name = "galaxy";
+
+  //   alias 와 union 섞어서 사용하기
+  type Name = string;
+  type Age = number;
+  let person: Name | Age = 'noh';
+  person = 33;
+
+  //   object type 합치기(type extend)
+  type PositionX = { x: number };
+  type PositionY = { y: number };
+  type NewType = PositionX & PositionY;
+  let position: NewType = {
+    x: 10,
+    y: 20,
+  };
+}
