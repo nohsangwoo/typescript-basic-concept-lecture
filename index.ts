@@ -62,11 +62,36 @@
   }
   // return 이 없는 함수에 반환 형식을 void 타입으로 지정하는법
   function functionThatReturnsVoidType(): void {}
+}
 
+// ##  4. 타입 확정하기 Narrowing & Assertion
+{
+  // Narrowing example1
   function question1(x: string | number) {
     if (typeof x === 'number') {
-      console.log('문제 풀이 1', x + 1);
+      console.log('4-1 문제 풀이 : ', x + 1);
     }
   }
   question1(3);
+
+  // Narrowing example2
+  function question2(x: string | number) {
+    let array: number[] = [];
+    if (typeof x === 'number') {
+      array[0] = x;
+    }
+    console.log('4-2 문제 풀이 : ', array);
+  }
+  question2(3);
+
+  // type Assertion example1
+  function question3(x: string | number) {
+    let array: number[] = [];
+    array[0] = x as number;
+    console.log('4-3 문제 풀이 : ', array);
+  }
+  question3(3);
+  // as 문법은 내로잉 할때처럼 여러개의 타입을 할당받을수있는 유니온 타입일때 하나의 타입으로 확정하기위한 용도로 사용됨.
+  // 어떤 타입이 틀어올지 100% 확신이 있을때 씀
+  // 근데 as 문법쓰면 버그추적이 불가능할 확률이 높음 그래서 사용 권장하지 않고 if문법같은걸로 narrowing 권장
 }
