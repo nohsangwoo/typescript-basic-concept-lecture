@@ -23,3 +23,5 @@ tsc -w
 ## 4. 숙제 해결 하기
 
 ## 5 타입도 변수에 담아 쓰기 / type 키워드 써서 & readonly
+
+## 6. Literal Types로 만드는 const 변수 유사품

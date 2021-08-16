@@ -207,3 +207,48 @@
     y: 20,
   };
 }
+
+// ## 6. Literal Types으로 const 처럼 사용하기
+{
+  // "kim" 만 할당할 수 있다.
+  type NameType = 'kim';
+  let name: NameType = 'kim';
+  //   type error
+  //   name = 'noh';
+
+  //   union type과 섞기
+  //   "noh" 와 "kim" 만 할당할 수 있다.
+  type FamilyName = 'noh' | 'kim';
+  let familyName: FamilyName = 'noh';
+  familyName = 'kim';
+
+  //   가위 바위 보
+  type InputType = '가위' | '바위' | '보';
+  function game(arg: InputType): InputType[] {
+    return ['보'];
+  }
+
+  //   문제 해결 1
+  var data: { name: 'kim' } = {
+    name: 'kim',
+  };
+
+  function myFunction(a: 'kim'): 'kim' {
+    return a;
+  }
+  // 해결 1
+  //   data오브젝트를 만들때 name의 타입을 "kim"으로 지정해야한다.
+  // 만약 data.name의 type을 지정하지 않는다면 data.name의 type은 string 이어서 type error가 발생한다.
+  //   해결 2
+  myFunction(data.name);
+
+  //   해결 2
+  //  data2의 오브젝트 내용을 as const로 지정
+  //   할당된 값 자체가 타입이 돼버린다.
+  // 즉 object 자료형을 완전히 묶어버린다
+  var data2 = {
+    name: 'kim',
+  } as const;
+  // type error 발생 안함
+  myFunction(data2.name);
+}
