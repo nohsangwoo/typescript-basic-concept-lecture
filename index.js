@@ -44,3 +44,18 @@
     //   let testVariable2: string = myName2;
     //   즉 자신에게 할당될수있는 변수만 무엇이든 허용해주는 타입이라 조금더 안전하다
 }
+// ## 3. 함수에 타입 지정하는 법 & void 타입
+{
+    // 함수에 타입 지정하는법
+    function testFunction(x) {
+        return x * 2;
+    }
+    // return 이 없는 함수에 반환 형식을 void 타입으로 지정하는법
+    function functionThatReturnsVoidType() { }
+    function question1(x) {
+        if (typeof x === 'number') {
+            console.log('문제 풀이 1', x + 1);
+        }
+    }
+    question1(3);
+}
