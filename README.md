@@ -19,3 +19,7 @@ tsc -w
 ## 4. 타입 확정하기 Narrowing & Assertion
 
 ## javascript html 연동
+
+## 4. 숙제 - 클리닝 함수 만들기
+
+- [1,2,"3","4"] 처럼 배열안의 type이 섞여있을때 number[] 타입으로 변환해주는 함수 만들기

@@ -1,3 +1,8 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
 // ## 1. 타입스크립트 기본 타입 정리 (primitive types)
 {
     // 변수
@@ -58,7 +63,7 @@
     // Narrowing example1
     function question1(x) {
         if (typeof x === 'number') {
-            console.log('4-1 문제 풀이 : ', x + 1);
+            console.log('4-1 문제 풀이 : ', x + 1, '\n\n');
         }
     }
     question1(3);
@@ -68,17 +73,59 @@
         if (typeof x === 'number') {
             array[0] = x;
         }
-        console.log('4-2 문제 풀이 : ', array);
+        console.log('4-2 문제 풀이 : ', array, '\n\n');
     }
     question2(3);
     // type Assertion example1
     function question3(x) {
         var array = [];
         array[0] = x;
-        console.log('4-3 문제 풀이 : ', array);
+        console.log('4-3 문제 풀이 : ', array, '\n\n');
     }
     question3(3);
     // as 문법은 내로잉 할때처럼 여러개의 타입을 할당받을수있는 유니온 타입일때 하나의 타입으로 확정하기위한 용도로 사용됨.
     // 어떤 타입이 틀어올지 100% 확신이 있을때 씀
     // 근데 as 문법쓰면 버그추적이 불가능할 확률이 높음 그래서 사용 권장하지 않고 if문법같은걸로 narrowing 권장
+    // 숙제 - [1,2,"3","4"] 처럼 배열안의 type이 섞여있을때 number[] 타입으로 변환해주는 함수 만들기
+    function homeWork1(arr) {
+        var result = [];
+        console.log('숙제1 변환 하기 전 : ', arr);
+        arr.forEach(function (el) {
+            if (typeof el === 'string') {
+                result = __spreadArray(__spreadArray([], result), [Number(el)]);
+            }
+            else {
+                result = __spreadArray(__spreadArray([], result), [Number(el)]);
+            }
+        });
+        console.log('숙제1 변환 후: ', result);
+    }
+    console.log('--------------- #4 숙제 1 ---------------');
+    var arr1 = [1, 2, 3, '4', '5', '6'];
+    homeWork1(arr1);
+    console.log('--------------- #4 end of 숙제 1 ---------------\n\n');
+    function homework2(_a) {
+        var subject = _a.subject;
+        var result;
+        if (typeof subject === 'string') {
+            result = subject;
+        }
+        else if (typeof subject === 'object') {
+            result = subject[subject.length - 1];
+        }
+        else {
+            console.error('잘못된 데이터가 입력됐습니다.');
+        }
+        return result;
+    }
+    console.log('--------------- #4 숙제 2 ---------------');
+    var 철수쌤 = { subject: 'math' };
+    var 영희쌤 = { subject: ['science', 'english'] };
+    var 민수쌤 = { subject: ['science', 'art', 'korean'] };
+    var 민수쌤2 = { hello: ['science', 'art', 'korean'] };
+    console.log('철수쌤: ', homework2(철수쌤));
+    console.log('영희쌤: ', homework2(영희쌤));
+    console.log('민수쌤: ', homework2(민수쌤));
+    //   console.log(homework2(민수쌤2)); //type error
+    console.log('--------------- end of #4 숙제 2 ---------------\n\n');
 }
