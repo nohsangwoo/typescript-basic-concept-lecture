@@ -139,7 +139,7 @@
   type dataType = {
     subject: string | string[];
   };
-  function homework2({ subject }: dataType) {
+  function homework2({ subject }: dataType): string | string[] {
     let result: string;
     if (typeof subject === 'string') {
       result = subject;
@@ -148,7 +148,7 @@
     } else {
       console.error('잘못된 데이터가 입력됐습니다.');
     }
-    return result;
+    return result!;
   }
 
   console.log('--------------- #4 숙제 2 ---------------');
@@ -321,4 +321,62 @@
   console.log('--------------- end of #6 숙제 2 ---------------');
   console.log(fixNumber('010-1111-2222', cutZero, removeDash));
   console.log('--------------- end of #6 숙제 2 ---------------\n\n');
+}
+
+// ## 8. 타입스크립트로 HTML 변경과 조작할 때 주의점
+{
+  let title = document.querySelector('#title');
+  //   narrowing 1
+  if (title !== null) {
+    title.innerHTML = '반가워용';
+  }
+  //   narrowing 2
+  //   title은 Element클래스의 자식인가
+  if (title instanceof Element) {
+    title.innerHTML = '반가워용';
+  }
+  //   type assertion
+  let title2 = document.querySelector('#title') as Element;
+  title2.innerHTML = '반가워용';
+
+  // narrowing 3
+  let title3 = document.querySelector('#title');
+  if (title3?.innerHTML) {
+    title3.innerHTML = '반가워용';
+  }
+
+  let link = document.querySelector('.link');
+  //   narrowing 4
+  if (link instanceof HTMLAnchorElement) {
+    link.href = 'http://kakao.com';
+  }
+
+  //   narrowing 5
+  let button = document.querySelector('#button');
+  if (button instanceof HTMLButtonElement) {
+    button.addEventListener('click', () => {
+      console.log('클릭됨?');
+    });
+  }
+
+  // narrowing 6
+  button?.addEventListener('click', () => {
+    console.log('클릭됨?');
+  });
+
+  //   homework 1
+  // (숙제1) 버튼을 누르면 이미지를 바꿔봅시다.
+  let imgTag = document.querySelector('#image');
+  if (imgTag instanceof HTMLImageElement) {
+    imgTag.src = 'change.jpg';
+  }
+
+  // homework 2
+  //   (숙제2) 바꾸고 싶은 html 요소가 많습니다.
+  let linkList = document.querySelectorAll('.linkList');
+  linkList.forEach(el => {
+    if (el instanceof HTMLAnchorElement) {
+      el.href = 'http://www.daum.net';
+    }
+  });
 }

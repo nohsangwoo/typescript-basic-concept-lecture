@@ -3,7 +3,9 @@
     // 'es3', 'es5', 'es2015', 'es2016', 'es2017','es2018', 'esnext' 가능
     "target": "es5",
     // 무슨 import 문법 쓸건지 'commonjs', 'amd', 'es2015', 'esnext'
-    "module": "commonjs"
+    "module": "commonjs",
+    // null, undefined 타입에 이상한 짓 할시 에러내기
+    "strictNullChecks": true
     // js 파일들 ts에서 import해서 쓸 수 있는지
     // 원하는 옵션 설정해서 사용하기
     /*
@@ -26,8 +28,6 @@
     "strict": true,
     // any타입 금지 여부
     "noImplicitAny": true,
-    // null, undefined 타입에 이상한 짓 할시 에러내기
-    "strictNullChecks": true,
     // 함수파라미터 타입체크 강하게
     "strictFunctionTypes": true,
     // class constructor 작성시 타입체크 강하게
