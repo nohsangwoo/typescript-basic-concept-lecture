@@ -316,6 +316,7 @@ console.log('--------------- end of #10 1 ---------------\n\n');
 console.log('--------------- end of #11 1 ---------------\n\n');
 // ## 12. Object에 interface를 사용하여 타입지정 하는법
 {
+    console.log('--------------- #12 ---------------\n\n');
     var square = { color: 'red', width: 100 };
     var student = { name: 'kim' };
     var teacher = { name: 'kim', age: 20 };
@@ -340,4 +341,67 @@ console.log('--------------- end of #11 1 ---------------\n\n');
             return a - b;
         },
     };
+    console.log('--------------- end of #12 ---------------\n\n');
+}
+//  part 2
+// ## 1. rest parameter and destructuring할때 타입지정
+{
+    console.log('--------------- #1 ---------------\n\n');
+    // rest parameter
+    function func1() {
+        var a = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            a[_i] = arguments[_i];
+        }
+        console.log(a);
+    }
+    func1(1, 2, 3, 4, 5);
+    //   destructure
+    var _a = ['hi', 100], variable1 = _a[0], variable2 = _a[1];
+    console.log(variable1);
+    console.log(variable2);
+    var _b = { name: 'noh', age: 30 }, name_4 = _b.name, age = _b.age;
+    var obj = { name: 'noh', age: 30 };
+    function destructureFunc(_a) {
+        var name = _a.name, age = _a.age;
+        console.log(name, age);
+    }
+    destructureFunc(obj);
+    //   homework1
+    /*
+          (숙제1) 숫자 여러개를 입력하면 최댓값을 return 해주는 함수를 만들어봅시다.
+          최댓값(6,3,7,2) 이렇게 쓰면 7이 return 되어야합니다.
+          (조건1) 넣을 수 있는 숫자 갯수는 제한없음, 0 이상의 정수만 가능합니다.
+          (조건2) Math.max() 사용금지 반복문이나 쓰셈
+      */
+    function maximum() {
+        var rest = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            rest[_i] = arguments[_i];
+        }
+        var result = rest[0];
+        rest.forEach(function (el) {
+            if (result < el) {
+                result = el;
+            }
+        });
+        return result;
+    }
+    console.log(maximum(3, 2, 1, 4, 3, 10, 7, 5, 8, 2));
+    function recieveObj(objContents) {
+        return;
+    }
+    var objContents = {
+        user: 'kim',
+        comment: [3, 5, 4],
+        admin: false,
+    };
+    recieveObj(objContents);
+    console.log('--------------- #1 ---------------\n\n');
+    function recieveFunc(_a) {
+        var a = _a[0], b = _a[1], c = _a[2];
+        console.log(a, b, c);
+    }
+    var obj2 = [40, 'wine', false];
+    recieveFunc(obj2);
 }

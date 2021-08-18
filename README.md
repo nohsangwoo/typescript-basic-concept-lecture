@@ -1,5 +1,7 @@
 # coding apple Typescript lecture
 
+# part1
+
 ## 타입스크립트 cli 명령어를 위한 설치
 
 npm install -g typescript
@@ -37,3 +39,7 @@ tsc -w
 ## 11. 클래스 생성시 타입 지정법
 
 ## 12. Object에 interface를 사용하여 타입지정 하는법
+
+# part2
+
+## 1. rest parameter and destructuring할때 타입지정
