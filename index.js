@@ -269,6 +269,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 }
 */
 // ## 10. prototype
+console.log('--------------- #10 1 ---------------');
 {
     var machine = /** @class */ (function () {
         function machine(q, w) {
@@ -277,7 +278,6 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         }
         return machine;
     }());
-    console.log('--------------- #10 1 ---------------');
     var newMachine = new machine('strike', 'snowball');
     console.log('newMachine', newMachine.q);
     //   protory에 자동으로 추가돼 있는 기능들
@@ -293,5 +293,24 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     //   위에서 만든 custom prototype 사용법
     // @ts-ignore
     array2.customFunc();
-    console.log('--------------- end of #10 1 ---------------\n\n');
 }
+console.log('--------------- end of #10 1 ---------------\n\n');
+// ## 11. 클래스 생성시 타입 지정법
+{
+    console.log('--------------- #11 1 ---------------');
+    var Person = /** @class */ (function () {
+        function Person(data) {
+            this.data = data;
+        }
+        Person.prototype.sayHi = function (name) {
+            console.log('Hi ', name);
+        };
+        return Person;
+    }());
+    var person1 = new Person('nohsangwoo');
+    var person2 = new Person('kimjongran');
+    console.log(person1);
+    console.log(person2);
+    person2.sayHi('nohsangwoo');
+}
+console.log('--------------- end of #11 1 ---------------\n\n');

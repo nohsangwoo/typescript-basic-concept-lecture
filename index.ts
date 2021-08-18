@@ -384,12 +384,12 @@
 */
 
 // ## 10. prototype
+console.log('--------------- #10 1 ---------------');
 {
   class machine {
     constructor(public q: string, public w: string) {}
   }
 
-  console.log('--------------- #10 1 ---------------');
   const newMachine = new machine('strike', 'snowball');
   console.log('newMachine', newMachine.q);
 
@@ -408,5 +408,24 @@
   //   위에서 만든 custom prototype 사용법
   // @ts-ignore
   array2.customFunc();
-  console.log('--------------- end of #10 1 ---------------\n\n');
 }
+console.log('--------------- end of #10 1 ---------------\n\n');
+
+// ## 11. 클래스 생성시 타입 지정법
+{
+  console.log('--------------- #11 1 ---------------');
+  class Person {
+    constructor(public data: string) {}
+
+    sayHi(name: string) {
+      console.log('Hi ', name);
+    }
+  }
+  let person1 = new Person('nohsangwoo');
+  let person2 = new Person('kimjongran');
+
+  console.log(person1);
+  console.log(person2);
+  person2.sayHi('nohsangwoo');
+}
+console.log('--------------- end of #11 1 ---------------\n\n');
