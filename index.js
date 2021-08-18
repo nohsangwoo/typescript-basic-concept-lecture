@@ -210,53 +210,88 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     console.log('--------------- end of #6 숙제 2 ---------------\n\n');
 }
 // ## 8. 타입스크립트로 HTML 변경과 조작할 때 주의점
+/*
 {
-    var title = document.querySelector('#title');
-    //   narrowing 1
-    if (title !== null) {
-        title.innerHTML = '반가워용';
-    }
-    //   narrowing 2
-    //   title은 Element클래스의 자식인가
-    if (title instanceof Element) {
-        title.innerHTML = '반가워용';
-    }
-    //   type assertion
-    var title2 = document.querySelector('#title');
-    title2.innerHTML = '반가워용';
-    // narrowing 3
-    var title3 = document.querySelector('#title');
-    if (title3 === null || title3 === void 0 ? void 0 : title3.innerHTML) {
-        title3.innerHTML = '반가워용';
-    }
-    var link = document.querySelector('.link');
-    //   narrowing 4
-    if (link instanceof HTMLAnchorElement) {
-        link.href = 'http://kakao.com';
-    }
-    //   narrowing 5
-    var button = document.querySelector('#button');
-    if (button instanceof HTMLButtonElement) {
-        button.addEventListener('click', function () {
-            console.log('클릭됨?');
-        });
-    }
-    // narrowing 6
-    button === null || button === void 0 ? void 0 : button.addEventListener('click', function () {
-        console.log('클릭됨?');
+  let title = document.querySelector('#title');
+  //   narrowing 1
+  if (title !== null) {
+    title.innerHTML = '반가워용';
+  }
+  //   narrowing 2
+  //   title은 Element클래스의 자식인가
+  if (title instanceof Element) {
+    title.innerHTML = '반가워용';
+  }
+  //   type assertion
+  let title2 = document.querySelector('#title') as Element;
+  title2.innerHTML = '반가워용';
+
+  // narrowing 3
+  let title3 = document.querySelector('#title');
+  if (title3?.innerHTML) {
+    title3.innerHTML = '반가워용';
+  }
+
+  let link = document.querySelector('.link');
+  //   narrowing 4
+  if (link instanceof HTMLAnchorElement) {
+    link.href = 'http://kakao.com';
+  }
+
+  //   narrowing 5
+  let button = document.querySelector('#button');
+  if (button instanceof HTMLButtonElement) {
+    button.addEventListener('click', () => {
+      console.log('클릭됨?');
     });
-    //   homework 1
-    // (숙제1) 버튼을 누르면 이미지를 바꿔봅시다.
-    var imgTag = document.querySelector('#image');
-    if (imgTag instanceof HTMLImageElement) {
-        imgTag.src = 'change.jpg';
+  }
+
+  // narrowing 6
+  button?.addEventListener('click', () => {
+    console.log('클릭됨?');
+  });
+
+  //   homework 1
+  // (숙제1) 버튼을 누르면 이미지를 바꿔봅시다.
+  let imgTag = document.querySelector('#image');
+  if (imgTag instanceof HTMLImageElement) {
+    imgTag.src = 'change.jpg';
+  }
+
+  // homework 2
+  //   (숙제2) 바꾸고 싶은 html 요소가 많습니다.
+  let linkList = document.querySelectorAll('.linkList');
+  linkList.forEach(el => {
+    if (el instanceof HTMLAnchorElement) {
+      el.href = 'http://www.daum.net';
     }
-    // homework 2
-    //   (숙제2) 바꾸고 싶은 html 요소가 많습니다.
-    var linkList = document.querySelectorAll('.linkList');
-    linkList.forEach(function (el) {
-        if (el instanceof HTMLAnchorElement) {
-            el.href = 'http://www.daum.net';
+  });
+}
+*/
+// ## 10. prototype
+{
+    var machine = /** @class */ (function () {
+        function machine(q, w) {
+            this.q = q;
+            this.w = w;
         }
-    });
+        return machine;
+    }());
+    console.log('--------------- #10 1 ---------------');
+    var newMachine = new machine('strike', 'snowball');
+    console.log('newMachine', newMachine.q);
+    //   protory에 자동으로 추가돼 있는 기능들
+    var array = [4, 3, 1, 2];
+    console.log(array.sort());
+    var array2 = new Array(4, 3, 2);
+    //   custom protorype
+    //   ts 에러남 원래 protorype에 정의 되지 않아서 그럼 일단 무시
+    // @ts-ignore
+    Array.prototype.customFunc = function () {
+        console.log('custom prototype is activate');
+    };
+    //   위에서 만든 custom prototype 사용법
+    // @ts-ignore
+    array2.customFunc();
+    console.log('--------------- end of #10 1 ---------------\n\n');
 }

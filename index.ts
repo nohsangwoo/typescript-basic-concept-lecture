@@ -324,6 +324,7 @@
 }
 
 // ## 8. 타입스크립트로 HTML 변경과 조작할 때 주의점
+/*
 {
   let title = document.querySelector('#title');
   //   narrowing 1
@@ -379,4 +380,33 @@
       el.href = 'http://www.daum.net';
     }
   });
+}
+*/
+
+// ## 10. prototype
+{
+  class machine {
+    constructor(public q: string, public w: string) {}
+  }
+
+  console.log('--------------- #10 1 ---------------');
+  const newMachine = new machine('strike', 'snowball');
+  console.log('newMachine', newMachine.q);
+
+  //   protory에 자동으로 추가돼 있는 기능들
+  const array = [4, 3, 1, 2];
+  console.log(array.sort());
+
+  const array2 = new Array(4, 3, 2);
+
+  //   custom protorype
+  //   ts 에러남 원래 protorype에 정의 되지 않아서 그럼 일단 무시
+  // @ts-ignore
+  Array.prototype.customFunc = () => {
+    console.log('custom prototype is activate');
+  };
+  //   위에서 만든 custom prototype 사용법
+  // @ts-ignore
+  array2.customFunc();
+  console.log('--------------- end of #10 1 ---------------\n\n');
 }

@@ -29,3 +29,7 @@ tsc -w
 ## 7. 함수와 methods에 type alias 지정하는 법
 
 ## 8. 타입스크립트로 HTML 변경과 조작
+
+## 9. class
+
+## 10 prototype
