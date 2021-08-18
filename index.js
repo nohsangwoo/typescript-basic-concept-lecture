@@ -314,3 +314,30 @@ console.log('--------------- end of #10 1 ---------------\n\n');
     person2.sayHi('nohsangwoo');
 }
 console.log('--------------- end of #11 1 ---------------\n\n');
+// ## 12. Object에 interface를 사용하여 타입지정 하는법
+{
+    var square = { color: 'red', width: 100 };
+    var student = { name: 'kim' };
+    var teacher = { name: 'kim', age: 20 };
+    var mimi = { name: 'mimi', age: 6 };
+    var product = {
+        brand: 'Samsung',
+        serialNumber: 1360,
+        model: ['TV', 'phone'],
+    };
+    var cart = [
+        { product: '청소기', price: 7000 },
+        { product: '삼다수', price: 800 },
+    ];
+    var list = { product: '청소기', price: 7000, card: false };
+    var test = {
+        plus: function (a, b) {
+            console.log('plus function 1 activate!');
+            return a + b;
+        },
+        minus: function (a, b) {
+            console.log('minus function 2 activate!');
+            return a - b;
+        },
+    };
+}

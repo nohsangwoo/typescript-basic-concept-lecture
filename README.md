@@ -35,3 +35,5 @@ tsc -w
 ## 10 prototype
 
 ## 11. 클래스 생성시 타입 지정법
+
+## 12. Object에 interface를 사용하여 타입지정 하는법

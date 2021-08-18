@@ -429,3 +429,117 @@ console.log('--------------- end of #10 1 ---------------\n\n');
   person2.sayHi('nohsangwoo');
 }
 console.log('--------------- end of #11 1 ---------------\n\n');
+
+// ## 12. Object에 interface를 사용하여 타입지정 하는법
+{
+  //   type Square = {
+  //     color: string;
+  //     width: number;
+  //   };
+  //   same this
+  interface Square {
+    color: string;
+    width: number;
+  }
+  let square: Square = { color: 'red', width: 100 };
+
+  //   extends 로 interface 상속받기
+  interface Student {
+    name: string;
+  }
+  interface Teacher extends Student {
+    age: number;
+  }
+
+  let student: Student = { name: 'kim' };
+  let teacher: Teacher = { name: 'kim', age: 20 };
+
+  //    intersection(& 기호)로 extends와 비슷하게 사용하기
+  type Animal = { name: string };
+  type Cat = { age: number } & Animal;
+
+  let mimi: Cat = { name: 'mimi', age: 6 };
+
+  //   type 할당의 문제점
+  //   interface는 아래와같은경우 바로 에러를 내뿜어준다
+  /* 
+   interface Animal2 {
+    name: string;
+  }
+//   interface는 이부분에서 에러가 남
+  interface Dog2 extends Animal2 {
+    name: number;
+  }
+  */
+  //  type할당은 바로 에러를 내뿜지 않고 적용이후 에러를 내뿜는다
+  type Animal3 = {
+    name: string;
+  };
+  type Dog3 = {
+    name: number;
+  } & Animal3;
+
+  // 이부분에서 type에러남
+  //   let 변수: Dog3 = { name: '멍멍' };
+
+  //   interface가 좀더 유연하고 안전하기에 더 자주 사용된다고 한다
+
+  //   homework 1
+
+  // (숙제1) interface 이용해서 간단하게 타입을 만들어봅시다
+
+  // 아래와 같은 선언과 할당에서 interface를 사용하여 타입을 지정해보기
+  interface IProduct {
+    brand: string;
+    serialNumber: number;
+    model: string[];
+  }
+  let product: IProduct = {
+    brand: 'Samsung',
+    serialNumber: 1360,
+    model: ['TV', 'phone'],
+  };
+
+  //   homework 2
+  // (숙제2) array 안에 object 여러개 존재할때 interface를 사용하여 타입 지정하기
+
+  interface ICart {
+    product: string;
+    price: number;
+  }
+
+  let cart: ICart[] = [
+    { product: '청소기', price: 7000 },
+    { product: '삼다수', price: 800 },
+  ];
+
+  //   homework 3
+  // (숙제3) 위에서 만든 타입을 extends 해봅시다.
+  /*
+    갑자기 서비스가 업데이트되어서 일부 상품은 card 속성이 들어가야합니다. 
+    { product : '청소기', price : 7000, card : false }
+    위에서 만든 interface를 extends 해서 이 object의 타입을 만들어보십시오.
+ */
+  interface NewCart extends ICart {
+    card: boolean;
+  }
+  let list: NewCart = { product: '청소기', price: 7000, card: false };
+
+  //   homework 4
+  // (숙제4) object 안에 함수를 2개 넣고 싶은데요
+  interface ITest {
+    plus: (a: number, b: number) => number;
+    minus: (a: number, b: number) => number;
+  }
+  let test: ITest = {
+    plus: (a, b) => {
+      console.log('plus function 1 activate!');
+      return a + b;
+    },
+
+    minus: (a, b) => {
+      console.log('minus function 2 activate!');
+      return a - b;
+    },
+  };
+}
