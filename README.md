@@ -43,3 +43,5 @@ tsc -w
 # part2
 
 ## 1. rest parameter and destructuring할때 타입지정
+
+## 2. Narrowing 하는 방법 part2

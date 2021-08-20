@@ -5,7 +5,8 @@
     // 무슨 import 문법 쓸건지 'commonjs', 'amd', 'es2015', 'esnext'
     "module": "commonjs",
     // null, undefined 타입에 이상한 짓 할시 에러내기
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "lib": ["es6", "dom"]
     // js 파일들 ts에서 import해서 쓸 수 있는지
     // 원하는 옵션 설정해서 사용하기
     /*

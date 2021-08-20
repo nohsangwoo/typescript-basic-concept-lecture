@@ -397,7 +397,6 @@ console.log('--------------- end of #11 1 ---------------\n\n');
         admin: false,
     };
     recieveObj(objContents);
-    console.log('--------------- #1 ---------------\n\n');
     function recieveFunc(_a) {
         var a = _a[0], b = _a[1], c = _a[2];
         console.log(a, b, c);
@@ -405,3 +404,32 @@ console.log('--------------- end of #11 1 ---------------\n\n');
     var obj2 = [40, 'wine', false];
     recieveFunc(obj2);
 }
+console.log('--------------- end of #1 ---------------\n\n');
+// ## 2. Narrowing 하는 방법 part2
+console.log('--------------- #2 ---------------');
+{
+    function narrowing1(animal) {
+        if ('swim' in animal) {
+            // the way of narrowing for object 1
+            console.log(animal);
+        }
+    }
+    narrowing1({ swim: 'i can fly!' });
+    // narrowing 2 example
+    function narrowing2() {
+        var date = new Date();
+        if (date instanceof Date) {
+            console.log('오늘의 날짜: ', date);
+        }
+    }
+    narrowing2();
+    function narrowing3(x) {
+        // type 중 wheel이 베타적으로 유니크한 속성이니,
+        // 그것을 기준으로 narrowing을 진행한다
+        if (x.wheel === '4개') {
+            console.log("it' bike type and the color is", x.color);
+        }
+    }
+    narrowing3({ wheel: '4개', color: 'black' });
+}
+console.log('--------------- end of #2 ---------------\n\n');

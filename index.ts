@@ -614,7 +614,6 @@ console.log('--------------- end of #11 1 ---------------\n\n');
     admin: false,
   };
   recieveObj(objContents);
-  console.log('--------------- #1 ---------------\n\n');
 
   //   homework3
   /*
@@ -631,3 +630,51 @@ console.log('--------------- end of #11 1 ---------------\n\n');
   let obj2 = [40, 'wine', false];
   recieveFunc(obj2);
 }
+console.log('--------------- end of #1 ---------------\n\n');
+
+// ## 2. Narrowing 하는 방법 part2
+console.log('--------------- #2 ---------------');
+
+{
+  // narrowing 1 example
+  type Fish = { swim: string };
+  type Bird = { fly: string };
+
+  function narrowing1(animal: Fish | Bird): void {
+    if ('swim' in animal) {
+      // the way of narrowing for object 1
+      console.log(animal);
+    }
+  }
+  narrowing1({ swim: 'i can fly!' });
+
+  // narrowing 2 example
+  function narrowing2() {
+    let date = new Date();
+    if (date instanceof Date) {
+      console.log('오늘의 날짜: ', date);
+    }
+  }
+  narrowing2();
+
+  // narrowing 3 example
+  type Car = {
+    //   비슷한 오브젝트가 많은경우 이렇게 literal type으로 구분하기
+    model?: 4;
+    wheel: '4개';
+    color: string;
+  };
+  type Bike = {
+    wheel: '2개';
+    color: string;
+  };
+  function narrowing3(x: Car | Bike) {
+    // type 중 wheel이 베타적으로 유니크한 속성이니,
+    // 그것을 기준으로 narrowing을 진행한다
+    if (x.wheel === '4개') {
+      console.log("it' bike type and the color is", x.color);
+    }
+  }
+  narrowing3({ wheel: '4개', color: 'black' });
+}
+console.log('--------------- end of #2 ---------------\n\n');
