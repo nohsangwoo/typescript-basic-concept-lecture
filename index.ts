@@ -680,7 +680,7 @@ console.log('--------------- #2 ---------------');
 console.log('--------------- end of #2 ---------------\n\n');
 
 // ## 3. 'never type' used by the function
-
+console.log('--------------- #3 ---------------');
 {
   // never type은 return이 실행되지 않는 환경을 말한다.
   // return 이전에 에러를 던지던가
@@ -695,3 +695,63 @@ console.log('--------------- end of #2 ---------------\n\n');
     }
   }
 }
+console.log('--------------- end of #3 ---------------\n\n');
+
+// ## 4. public private protected static
+console.log('--------------- #4 ---------------');
+{
+  // public은 외부에서 읽기 수정 모든게 가능하다
+  class publicUser {
+    public name: string;
+    constructor(name: string) {
+      this.name = name;
+    }
+  }
+  let PublicUser = new publicUser('nohsangwoo');
+  console.log(PublicUser.name);
+  PublicUser.name = 'kimjongran';
+  console.log(PublicUser.name);
+
+  // private는 함수 내부에서만 사용가능하다.
+  class privateUser {
+    private name: string = 'Sangwoo';
+    private surname: string = 'Noh';
+    constructor(name: string) {
+      this.name = name;
+    }
+
+    public get value(): string {
+      return this.surname + this.name;
+    }
+  }
+  let PrivateUser = new privateUser('sangwoo');
+  console.log(PrivateUser.value);
+  // 읽기 쓰기 외부에서 사용 불가
+  // console.log(PrivateUser.name);
+  // PrivateUser.name = "jongran"
+
+  // getter and setter 를 사용한 private 예시
+  class userName {
+    private name: string = 'john';
+    private surname: string = 'smith';
+
+    public get fullName(): string {
+      return `${this.name} ${this.surname}`;
+    }
+
+    public set fullName(value: string) {
+      [this.name, this.surname] = value.split(' ');
+    }
+  }
+
+  let newUser = new userName();
+  newUser.fullName = 'Sangwoo Noh';
+
+  console.log(newUser.fullName);
+
+  // 축약 버젼
+  class shortCutUserName {
+    constructor(private name: string, private surname: string) {}
+  }
+}
+console.log('--------------- end of #4 ---------------\n\n');

@@ -434,6 +434,7 @@ console.log('--------------- #2 ---------------');
 }
 console.log('--------------- end of #2 ---------------\n\n');
 // ## 3. 'never type' used by the function
+console.log('--------------- #3 ---------------');
 {
     // never type은 return이 실행되지 않는 환경을 말한다.
     // return 이전에 에러를 던지던가
@@ -447,3 +448,71 @@ console.log('--------------- end of #2 ---------------\n\n');
         }
     }
 }
+console.log('--------------- end of #3 ---------------\n\n');
+// ## 4. public private protected static
+console.log('--------------- #4 ---------------');
+{
+    // public은 외부에서 읽기 수정 모든게 가능하다
+    var publicUser = /** @class */ (function () {
+        function publicUser(name) {
+            this.name = name;
+        }
+        return publicUser;
+    }());
+    var PublicUser = new publicUser('nohsangwoo');
+    console.log(PublicUser.name);
+    PublicUser.name = 'kimjongran';
+    console.log(PublicUser.name);
+    // private는 함수 내부에서만 사용가능하다.
+    var privateUser = /** @class */ (function () {
+        function privateUser(name) {
+            this.name = 'Sangwoo';
+            this.surname = 'Noh';
+            this.name = name;
+        }
+        Object.defineProperty(privateUser.prototype, "value", {
+            get: function () {
+                return this.surname + this.name;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return privateUser;
+    }());
+    var PrivateUser = new privateUser('sangwoo');
+    console.log(PrivateUser.value);
+    // 읽기 쓰기 외부에서 사용 불가
+    // console.log(PrivateUser.name);
+    // PrivateUser.name = "jongran"
+    // getter and setter 를 사용한 private 예시
+    var userName = /** @class */ (function () {
+        function userName() {
+            this.name = 'john';
+            this.surname = 'smith';
+        }
+        Object.defineProperty(userName.prototype, "fullName", {
+            get: function () {
+                return this.name + " " + this.surname;
+            },
+            set: function (value) {
+                var _a;
+                _a = value.split(' '), this.name = _a[0], this.surname = _a[1];
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return userName;
+    }());
+    var newUser = new userName();
+    newUser.fullName = 'Sangwoo Noh';
+    console.log(newUser.fullName);
+    // 축약 버젼
+    var shortCutUserName = /** @class */ (function () {
+        function shortCutUserName(name, surname) {
+            this.name = name;
+            this.surname = surname;
+        }
+        return shortCutUserName;
+    }());
+}
+console.log('--------------- end of #4 ---------------\n\n');
