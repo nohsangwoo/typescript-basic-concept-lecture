@@ -69,3 +69,5 @@ tsc -w
 ## 4. public private
 
 ## 5. protected static
+
+## 6. import export 해서 타입사용 하기 / and about namespace

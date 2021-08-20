@@ -829,3 +829,11 @@ console.log('--------------- #5 ---------------');
   Users.printX();
 }
 console.log('--------------- end of #5 ---------------\n\n');
+
+// ## 6. import export 해서 타입사용 하기 / and about namespace
+console.log('--------------- #6 ---------------');
+import { Name, age } from './a';
+{
+  let name: Name = 'Sangwoo Noh';
+}
+console.log('--------------- end of #6 ---------------\n\n');

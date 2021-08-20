@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -18,6 +19,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         to[j] = from[i];
     return to;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 // ## 1. 타입스크립트 기본 타입 정리 (primitive types)
 {
     // 변수
@@ -375,7 +377,7 @@ console.log('--------------- end of #11 1 ---------------\n\n');
     var _a = ['hi', 100], variable1 = _a[0], variable2 = _a[1];
     console.log(variable1);
     console.log(variable2);
-    var _b = { name: 'noh', age: 30 }, name_4 = _b.name, age = _b.age;
+    var _b = { name: 'noh', age: 30 }, name_4 = _b.name, age_1 = _b.age;
     var obj = { name: 'noh', age: 30 };
     function destructureFunc(_a) {
         var name = _a.name, age = _a.age;
@@ -628,3 +630,9 @@ console.log('--------------- #5 ---------------');
     Users_1.printX();
 }
 console.log('--------------- end of #5 ---------------\n\n');
+// ## 6. import export 해서 타입사용 하기 / and about namespace
+console.log('--------------- #6 ---------------');
+{
+    var name_5 = 'Sangwoo Noh';
+}
+console.log('--------------- end of #6 ---------------\n\n');
