@@ -837,3 +837,92 @@ import { Name, age } from './a';
   let name: Name = 'Sangwoo Noh';
 }
 console.log('--------------- end of #6 ---------------\n\n');
+
+console.log('--------------- #7 ---------------');
+// ## 7. typescript generic
+{
+  // generic 사용법
+  // 유연한 타입설정 방법
+  // 입력되는 타입이 일정하지 않을때 타입 지정하는 방법
+  // 확장성 있는 타입 지정법
+  // @ts-ignore
+  function genericTSFunction<Type>(x: Type[] | Type): Type {
+    return x[0];
+  }
+
+  let a = genericTSFunction<number>([4, 2]);
+  console.log(a);
+
+  // 두개 이상의 타입을 generic으로 받기
+  // @ts-ignore
+  function genericTSFunction2<T, T2>(
+    numArr: T[],
+    name: T2
+  ): {
+    numArr: T[];
+    name: T2;
+  } {
+    const obj = {
+      numArr,
+      name,
+    };
+    return obj;
+  }
+
+  let a2 = genericTSFunction2<number, string>([4, 2], 'Sangwoo Noh');
+  console.log(a2);
+
+  interface LengthCheck {
+    length: number;
+  }
+  // @ts-ignore
+  // 타입 파라미터 제한두기
+  function minusOne<T extends LengthCheck>(x: T) {
+    return x.length - 1;
+  }
+  let b = minusOne<LengthCheck>({ length: 100 });
+  console.log('minusOne functin', b);
+
+  // homework 1
+  /*
+  (숙제1) 문자를 집어넣으면 문자의 갯수, array를 집어넣으면 array안의 자료 갯수를 콘솔창에 출력해주는 함수를 만들어라
+  연습삼아 Generic 이런걸로 만들어봅시다. 굳이 Generic 이런게 필요는 없겠지만요 
+  (동작 예시)
+  함수<string>('hello') 이렇게 사용하면 콘솔창에 5가 나와야합니다. 
+  함수<string[]>( ['kim', 'park'] ) 이렇게 사용하면 콘솔창에 2가 나와야합니다. 
+  */
+
+  function countLength<T extends string | string[]>(data: T) {
+    let result: number;
+    result = data.length;
+    return result;
+  }
+
+  const countLengthData = countLength('data for string length');
+  console.log(countLengthData);
+
+  const countLengthData2 = countLength(['agr1', 'agr2']);
+  console.log(countLengthData2);
+
+  // homework2
+  interface Animal {
+    name: string;
+    age: number;
+  }
+  let data = '{"name" : "dog", "age" : 1 }';
+  /*
+    animal type과 data라는 변수가 있습니다. object처럼 생겼지만 따옴표 쳐진 JSON 자료입니다. 
+    data라는 JSON 자료를 object { } 자료로 변환을 해서 return 해주는 함수를 만들어보십시오.
+    근데 변환된 object의 타입은 Animal이 되었으면 좋겠는데 어떻게 코드를 짜면 될까요?
+    오늘 배운 Generic을 이용해서 구현해보도록 합시다.  
+    (동작 예시)
+    함수<Animal>(data) 이렇게 쓰면 이 자리에 { name : 'dog' , age : 1 } 이런 object 자료가 남아야합니다. 근데 타입은 Animal임
+   */
+
+  function transJson<T extends Animal>(data: string): T {
+    return JSON.parse(data);
+  }
+  const resultOfTransJson: Animal = transJson(data);
+  console.log(resultOfTransJson);
+}
+console.log('--------------- end of #7 ---------------\n\n');
