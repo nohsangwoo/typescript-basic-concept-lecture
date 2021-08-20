@@ -1,3 +1,18 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
         to[j] = from[i];
@@ -449,7 +464,7 @@ console.log('--------------- #3 ---------------');
     }
 }
 console.log('--------------- end of #3 ---------------\n\n');
-// ## 4. public private protected static
+// ## 4. public private
 console.log('--------------- #4 ---------------');
 {
     // public은 외부에서 읽기 수정 모든게 가능하다
@@ -516,3 +531,66 @@ console.log('--------------- #4 ---------------');
     }());
 }
 console.log('--------------- end of #4 ---------------\n\n');
+//  ## 5. protected static
+console.log('--------------- #5 ---------------');
+{
+    // protected는 extends에서도 사용가능하다.
+    var User = /** @class */ (function () {
+        function User() {
+            this.x = 10;
+        }
+        return User;
+    }());
+    var newUser = /** @class */ (function (_super) {
+        __extends(newUser, _super);
+        function newUser() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Object.defineProperty(newUser.prototype, "setX", {
+            set: function (x) {
+                this.x = x;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(newUser.prototype, "getX", {
+            get: function () {
+                return this.x;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        newUser.prototype.doThis = function () {
+            this.x = 20;
+        };
+        return newUser;
+    }(User));
+    var user = new newUser();
+    user.setX = 50;
+    console.log(user.getX);
+    // static 은 직접 접근하여 인스턴스하게 사용 가능하다.
+    var staticUser = /** @class */ (function () {
+        function staticUser() {
+        }
+        staticUser.x = 10;
+        return staticUser;
+    }());
+    var testUser = /** @class */ (function (_super) {
+        __extends(testUser, _super);
+        function testUser() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return testUser;
+    }(staticUser));
+    console.log(staticUser.x);
+    // static 예시
+    var staticUser2 = /** @class */ (function () {
+        function staticUser2() {
+            // 내부에서 static 변수를 사용하고 싶을때
+            this.pluse = staticUser2.x + 30;
+        }
+        staticUser2.x = 10;
+        return staticUser2;
+    }());
+}
+console.log('--------------- end of #5 ---------------\n\n');

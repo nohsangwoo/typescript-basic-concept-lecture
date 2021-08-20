@@ -697,7 +697,7 @@ console.log('--------------- #3 ---------------');
 }
 console.log('--------------- end of #3 ---------------\n\n');
 
-// ## 4. public private protected static
+// ## 4. public private
 console.log('--------------- #4 ---------------');
 {
   // public은 외부에서 읽기 수정 모든게 가능하다
@@ -755,3 +755,45 @@ console.log('--------------- #4 ---------------');
   }
 }
 console.log('--------------- end of #4 ---------------\n\n');
+
+//  ## 5. protected static
+console.log('--------------- #5 ---------------');
+{
+  // protected는 extends에서도 사용가능하다.
+  class User {
+    protected x: number = 10;
+  }
+  class newUser extends User {
+    public set setX(x: number) {
+      this.x = x;
+    }
+
+    public get getX() {
+      return this.x;
+    }
+    doThis() {
+      this.x = 20;
+    }
+  }
+  const user = new newUser();
+  user.setX = 50;
+  console.log(user.getX);
+
+  // static 은 직접 접근하여 인스턴스하게 사용 가능하다.
+  class staticUser {
+    static x: number = 10;
+  }
+  class testUser extends staticUser {
+    // testUser에선 extends한 staticUser의 static x에 접근 불가능하다.
+    // this.x = 30;
+  }
+  console.log(staticUser.x);
+
+  // static 예시
+  class staticUser2 {
+    static x: number = 10;
+    // 내부에서 static 변수를 사용하고 싶을때
+    pluse: number = staticUser2.x + 30;
+  }
+}
+console.log('--------------- end of #5 ---------------\n\n');

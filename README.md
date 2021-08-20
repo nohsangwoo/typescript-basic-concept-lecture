@@ -66,4 +66,6 @@ tsc -w
 
 - 그러나 실무에선 대부분 void로 대체한다. 굳이 never를 생각해가며 맞추기 귀찮고 직관적임
 
-## 4. public private protected static
+## 4. public private
+
+## 5. protected static
