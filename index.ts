@@ -795,5 +795,37 @@ console.log('--------------- #5 ---------------');
     // 내부에서 static 변수를 사용하고 싶을때
     pluse: number = staticUser2.x + 30;
   }
+
+  /*
+  1. 필드값은 원래는 모든 User의 자식들에게 물려주는 속성이지만 
+  2. private static x는 class 내부에서만 수정 가능하다
+  3. public static y는 class 내부 외부 상관없이 수정 가능하다
+  */
+
+  // homework1
+  class Users {
+    private static x: number = 10;
+    public static y: number = 20;
+
+    static addOne(x: number) {
+      Users.x += x;
+    }
+
+    public get getX(): number {
+      // 같은 static 속성이 아니라면 원본 객체로 접근해야함
+      return Users.x;
+    }
+    public static printX() {
+      // 같은 static이면 this로 끌어올수 있다.
+      console.log(this.x);
+    }
+  }
+  /*
+  User.addOne(3) //이렇게 하면 x가 3 더해져야함
+  User.addOne(4) //이렇게 하면 x가 4 더해져야함
+  */
+
+  Users.addOne(3);
+  Users.printX();
 }
 console.log('--------------- end of #5 ---------------\n\n');

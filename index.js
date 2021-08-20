@@ -592,5 +592,39 @@ console.log('--------------- #5 ---------------');
         staticUser2.x = 10;
         return staticUser2;
     }());
+    /*
+    1. 필드값은 원래는 모든 User의 자식들에게 물려주는 속성이지만
+    2. private static x는 class 내부에서만 수정 가능하다
+    3. public static y는 class 내부 외부 상관없이 수정 가능하다
+    */
+    // homework1
+    var Users_1 = /** @class */ (function () {
+        function Users() {
+        }
+        Users.addOne = function (x) {
+            Users.x += x;
+        };
+        Object.defineProperty(Users.prototype, "getX", {
+            get: function () {
+                // 같은 static 속성이 아니라면 원본 객체로 접근해야함
+                return Users.x;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Users.printX = function () {
+            // 같은 static이면 this로 끌어올수 있다.
+            console.log(this.x);
+        };
+        Users.x = 10;
+        Users.y = 20;
+        return Users;
+    }());
+    /*
+    User.addOne(3) //이렇게 하면 x가 3 더해져야함
+    User.addOne(4) //이렇게 하면 x가 4 더해져야함
+    */
+    Users_1.addOne(3);
+    Users_1.printX();
 }
 console.log('--------------- end of #5 ---------------\n\n');
