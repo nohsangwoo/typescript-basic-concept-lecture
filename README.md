@@ -45,3 +45,23 @@ tsc -w
 ## 1. rest parameter and destructuring할때 타입지정
 
 ## 2. Narrowing 하는 방법 part2
+
+## 3. 함수에 사용하는 never type
+
+- 모든 함수는 return을 생략해도 기본적으로 return undefined를 가지고 있다.
+
+- 즉 never type은 return이 실행되지 않는 환경을 말한다.(아래 예시)
+
+```
+ function throwErrorFunction(): never {
+    throw new Error();
+  }
+
+  function infiniteFunction(): never {
+    while (true) {
+      console.log('infinite activate!');
+    }
+  }
+```
+
+- 그러나 실무에선 대부분 void로 대체한다. 굳이 never를 생각해가며 맞추기 귀찮고 직관적임

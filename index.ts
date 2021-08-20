@@ -678,3 +678,20 @@ console.log('--------------- #2 ---------------');
   narrowing3({ wheel: '4개', color: 'black' });
 }
 console.log('--------------- end of #2 ---------------\n\n');
+
+// ## 3. 'never type' used by the function
+
+{
+  // never type은 return이 실행되지 않는 환경을 말한다.
+  // return 이전에 에러를 던지던가
+  function throwErrorFunction(): never {
+    throw new Error();
+  }
+
+  // return 이전에 무한히 동작하는 기능이 있다던가
+  function infiniteFunction(): never {
+    while (true) {
+      console.log('infinite activate!');
+    }
+  }
+}
