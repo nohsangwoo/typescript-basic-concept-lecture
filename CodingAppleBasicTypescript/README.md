@@ -122,3 +122,5 @@ declare global {
 ## 11. implements
 
 - 해당 내용이 구현됐는지 확인하는 방법(추상적으로 기능을 구현하는 방법)
+
+## 12. object index signatrue and recursive pattern

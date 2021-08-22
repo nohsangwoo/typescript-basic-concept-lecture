@@ -1069,3 +1069,48 @@ console.log('--------------- #11 ---------------\n\n');
   console.log(boongBoongCar);
 }
 console.log('--------------- end of #11 ---------------\n\n');
+
+// ## 12. object index signatrue
+console.log('--------------- #12 ---------------\n\n');
+{
+  // index signature 문법
+  // (한번에 모든 타입을 다 지정해버리기)
+  // 아래뜻은 모든 타입은 string타입인 interface 생성
+  interface StringOnly {
+    [key: string]: string;
+  }
+  let user: StringOnly = {
+    name: 'kim',
+    age: '60',
+    location: 'seoul',
+  };
+
+  // recursive: 재귀적 패턴으로 type 지정하는 방법
+  interface cssType {
+    'font-size': {
+      'font-size': {
+        'font-size': number;
+      };
+    };
+  }
+  let css: cssType = {
+    'font-size': {
+      'font-size': {
+        'font-size': 14,
+      },
+    },
+  };
+  // 이걸 재귀적 패턴으로 type 지정해보면
+  interface MyType {
+    'font-size': MyType | number;
+  }
+
+  let css2: MyType = {
+    'font-size': {
+      'font-size': {
+        'font-size': 14,
+      },
+    },
+  };
+}
+console.log('--------------- end of #12 ---------------\n\n');
