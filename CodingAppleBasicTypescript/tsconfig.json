@@ -5,8 +5,11 @@
     // 무슨 import 문법 쓸건지 'commonjs', 'amd', 'es2015', 'esnext'
     "module": "commonjs",
     // null, undefined 타입에 이상한 짓 할시 에러내기
-    "strictNullChecks": true
-    // "lib": ["es5", "dom"]
+    "strictNullChecks": true,
+    // 컴파일시 .d.ts 파일도 자동으로 함께생성 (현재쓰는 모든 타입이 정의된 파일)
+    "lib": ["es5", "dom"],
+    "declaration": true,
+    "typeRoots": ["./types"]
     // js 파일들 ts에서 import해서 쓸 수 있는지
     // 원하는 옵션 설정해서 사용하기
     /*
@@ -15,8 +18,6 @@
     "checkJs": true,
     // tsx 파일을 jsx로 어떻게 컴파일할 것인지 'preserve', 'react-native', 'react'
     "jsx": "preserve",
-    // 컴파일시 .d.ts 파일도 자동으로 함께생성 (현재쓰는 모든 타입이 정의된 파일)
-    "declaration": true,
     // 모든 ts파일을 js파일 하나로 컴파일해줌 (module이 none, amd, system일 때만 가능)
     "outFile": "./",
     // js파일 아웃풋 경로바꾸기

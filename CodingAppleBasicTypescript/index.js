@@ -790,9 +790,19 @@ console.log('--------------- #8 ---------------');
 console.log('--------------- end of #8 ---------------\n\n');
 // ts파일 불러오고싶을땐 그냥 import한다
 var data2_1 = require("./data2");
+console.log('--------------- #9 ---------------\n\n');
 {
     // index.html에서 script로 data.js를 불러온 상태
     // 브라우저에서는 작동이 잘된다. 그러나 ts파일에선 a의 출처를 알수없으니 에러를 뿜
     // console.log(a + 1);
     console.log(data2_1.c);
 }
+console.log('--------------- end of #9 ---------------');
+// ## 10. d.ts 파일 이용하기
+console.log('--------------- #10 ---------------\n\n');
+{
+    // usage
+    // global d.ts파일안에 정의된 타입 사용하기
+    var age_2 = 33;
+}
+console.log('--------------- end of #10 ---------------\n\n');

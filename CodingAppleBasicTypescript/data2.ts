@@ -1,4 +1,4 @@
-var c = 10;
+export var c = 10;
 
 declare global {}
 export {};
