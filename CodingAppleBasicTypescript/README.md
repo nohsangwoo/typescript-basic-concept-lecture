@@ -126,3 +126,5 @@ declare global {
 ## 12. object index signatrue and recursive pattern
 
 ## 13. object 타입 변환기 만들기
+
+## 14. 조건문으로 타입만들기 & infer

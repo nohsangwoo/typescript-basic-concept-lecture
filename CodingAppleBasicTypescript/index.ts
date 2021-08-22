@@ -1199,3 +1199,45 @@ console.log('--------------- #13 ---------------');
   type NewBus2 = TypeChanger2<Bus2, string[] | number>;
 }
 console.log('--------------- end of #13 ---------------\n\n');
+
+// ## 14. 조건문으로 타입만들기 & infer
+console.log('--------------- 14 ---------------');
+{
+  // T로 입력받은 type이 string 이라면 string타입으로 지정 아니라면 unknown타입 지정
+  type Age<T> = T extends string ? string : unknown;
+
+  let a: Age<string>;
+  let a2: Age<number>;
+  a = 'string';
+  // a = 123;
+
+  type FirstItem<T> = T extends any[] ? T : any;
+  let b: FirstItem<number[]>;
+  let b2: FirstItem<number>;
+
+  // infer
+  // 조건문에서 사용가능 - 타입을 왼쪽에서 추출해주는 기능
+  // 즉 아래의 뜻은 T에서 타입을 추출하여 R에 저장해달라는 뜻
+  //
+  type Person<T> = T extends infer R ? R : unknown;
+  type NewPerson = Person<string>;
+
+  let d: NewPerson = 'kim';
+  // type error
+  // let d2: NewPerson = 123;
+
+  // infer with array
+  type OtherPerson<T> = T extends (infer R)[] ? R : unknown;
+  type NewOtherPerson = OtherPerson<string[]>;
+  let E: NewOtherPerson = 'lkj';
+
+  // infer with arrow function
+  type ExtractType<T> = T extends () => infer R ? R : unknown;
+  type Type = ExtractType<() => void>; // void를 return 하는 type alias
+
+  // ReturnType 사용법
+  // typescript에서 제공하는 api같은거 return type 뽑아와주는 기능이다.
+  // 위에 직접 구현한 ExtractType과 비슷한 기능이다.
+  type b = ReturnType<() => void>;
+}
+console.log('--------------- end of #14 ---------------\n\n');
