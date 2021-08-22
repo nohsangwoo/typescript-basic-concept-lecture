@@ -73,3 +73,5 @@ tsc -w
 ## 6. import export 해서 타입사용 하기 / and about namespace
 
 ## 7. typescript generic
+
+## 8. array 자료에 붙일 수 있는 tuple type

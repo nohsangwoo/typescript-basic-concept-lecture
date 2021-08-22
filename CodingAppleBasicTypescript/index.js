@@ -586,7 +586,7 @@ console.log('--------------- #5 ---------------');
     }(staticUser));
     console.log(staticUser.x);
     // static 예시
-    var staticUser2 = /** @class */ (function () {
+    var staticUser2_1 = /** @class */ (function () {
         function staticUser2() {
             // 내부에서 static 변수를 사용하고 싶을때
             this.pluse = staticUser2.x + 30;
@@ -700,3 +700,91 @@ console.log('--------------- #7 ---------------');
     console.log(resultOfTransJson);
 }
 console.log('--------------- end of #7 ---------------\n\n');
+// ## 8. tuple type on Array
+console.log('--------------- #8 ---------------');
+{
+    // Union type
+    // 순서에 상관없이 배열안에 들어가는 type의 종류만 체크
+    var barkBark = ['dog', true];
+    // tuple type
+    // 순서까지 지정해가면서 배열안의 type종류 체크
+    // 옵셔널기능도 사용가능(대신 맨 마지막요소만 사용 가능)
+    var barkBark2 = ['dog', true];
+    // rest parameter with array
+    // tuple type도 적용가능
+    function spreadArray() {
+        var x = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            x[_i] = arguments[_i];
+        }
+        console.log(x);
+    }
+    spreadArray(1, 2, 'tuple string');
+    // spread in tuple
+    var arr = [1, 2, 3];
+    var arr2 = __spreadArray([4, 5], arr);
+    // 사용법이 묘하게 다름
+    var arr3 = __spreadArray([4, 'string'], arr);
+    console.log(arr2);
+    // homework 1
+    /*
+      (숙제1) 여러분이 최근에 사먹은 음식의 1. 이름 2. 가격 3. 맛있는지여부를 array 자료에 담아보고 타입지정까지 해보십시오.
+      오늘 배운 tuple 타입으로 타입지정합시다.
+      쉬워서 답은 생략합니다.
+      예시) [ '동서녹차', 4000, true ] 이런 자료 만들고 타입지정하라는 소리입니다.
+    */
+    var foodInfo = ['curry and chicken', 47000, false];
+    // homework 2
+    /*
+    (숙제2) 이렇게 생긴 자료는 타입지정 어떻게 해야할까요?
+    몇개인지는 모르겠지만 true와 false가 셋째 자료부터 잔뜩 들어올 수 있다고 합니다.
+    tuple 타입과 spread 연산자를 써보도록 합시다.
+    */
+    var arrF = [
+        '동서녹차',
+        4000,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+    ];
+    // homework 3
+    // (숙제3) 함수에 타입지정을 해보도록 합시다.
+    /*
+      1. 이 함수의 첫째 파라미터는 문자,
+      2. 둘째 파라미터는 boolean,
+      3. 셋째 파라미터부터 10번째 파라미터 까지는 숫자 또는 문자가 들어와야합니다.
+      그럼 함수에 파라미터를 어떻게 만들고 타입지정은 또 어떻게 해야할까요?
+      오늘 배운 tuple 타입과 rest parameter를 사용해봅시다.
+     */
+    function typePractice() {
+        var rest = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            rest[_i] = arguments[_i];
+        }
+    }
+    typePractice('a', true, 6, 3, '1', 4);
+    function homework4() {
+        var rest = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            rest[_i] = arguments[_i];
+        }
+        var getStringArr = [];
+        var getNumberArr = [];
+        var result;
+        rest.forEach(function (el) {
+            if (typeof el === 'string') {
+                getStringArr = __spreadArray(__spreadArray([], getStringArr), [el]);
+            }
+            else {
+                getNumberArr = __spreadArray(__spreadArray([], getNumberArr), [el]);
+            }
+        });
+        result = [getStringArr, getNumberArr];
+        return result;
+    }
+    console.log(homework4('b', 5, 6, 8, 'a'));
+}
+console.log('--------------- end of #8 ---------------\n\n');
