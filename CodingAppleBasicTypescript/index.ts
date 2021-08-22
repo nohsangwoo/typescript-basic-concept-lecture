@@ -1031,7 +1031,7 @@ console.log('--------------- end of #8 ---------------\n\n');
 declare let a: number;
 // ts파일 불러오고싶을땐 그냥 import한다
 import { c } from './data2';
-console.log('--------------- #9 ---------------\n\n');
+console.log('--------------- #9 ---------------');
 {
   // index.html에서 script로 data.js를 불러온 상태
   // 브라우저에서는 작동이 잘된다. 그러나 ts파일에선 a의 출처를 알수없으니 에러를 뿜
@@ -1042,7 +1042,7 @@ console.log('--------------- #9 ---------------\n\n');
 console.log('--------------- end of #9 ---------------');
 
 // ## 10. d.ts 파일 이용하기
-console.log('--------------- #10 ---------------\n\n');
+console.log('--------------- #10 ---------------');
 
 {
   // usage
@@ -1052,7 +1052,7 @@ console.log('--------------- #10 ---------------\n\n');
 console.log('--------------- end of #10 ---------------\n\n');
 
 // ## 11. implements
-console.log('--------------- #11 ---------------\n\n');
+console.log('--------------- #11 ---------------');
 {
   interface CarType {
     model: string;
@@ -1071,7 +1071,7 @@ console.log('--------------- #11 ---------------\n\n');
 console.log('--------------- end of #11 ---------------\n\n');
 
 // ## 12. object index signatrue
-console.log('--------------- #12 ---------------\n\n');
+console.log('--------------- #12 ---------------');
 {
   // index signature 문법
   // (한번에 모든 타입을 다 지정해버리기)
@@ -1114,3 +1114,88 @@ console.log('--------------- #12 ---------------\n\n');
   };
 }
 console.log('--------------- end of #12 ---------------\n\n');
+
+// ## 13. object 타입 변환기 만들기
+// type mapping
+console.log('--------------- #13 ---------------');
+{
+  let obj = { name: 'noh', age: 32 };
+  Object.keys(obj); // [name, age]
+
+  // 위와 비슷한 기능을 typescript가 제공함
+  interface Person {
+    age: number;
+    name: string;
+  }
+
+  type PersonKeys = keyof Person;
+  // literal type이라 name과 age라는 값만 할당 될 수 있음
+  let a: PersonKeys = 'name';
+
+  // index signature에서
+  interface Person2 {
+    [key: string]: number;
+  }
+
+  type PersonKeys2 = keyof Person2;
+  // literal type이라 name과 age라는 값만 할당 될 수 있음
+  let a: PersonKeys2 = 'name';
+
+  // type change (mapping)
+  type Car = {
+    color: boolean;
+    model: boolean;
+    price: boolean | number;
+  };
+
+  // parameter로 MyType을 받았을때
+  type TypeChanger<MyType> = {
+    // keyof MyType은 "color" | "model" | "price" 라는 literal union type이다
+    // 따라서 키값이 위 literal union type에 포함된다면 type을 string으로 변환하라는 뜻이다.
+    [key in keyof MyType]: string;
+  };
+
+  type newType = TypeChanger<Car>;
+
+  // homework 1
+  /*
+    (숙제1) 다음 타입을 변환기를 돌려보십시오.
+    동료가 잘못 만든 타입입니다.
+    color, model, price 속성은 전부 string 또는 number 타입이어야합니다.
+    1. 변환기 하나 만드시고
+    2. 기존 Bus 타입을 변환기 돌려서 위 조건을 충족하는 새로운 타입을 하나 만들어보십시오.
+ */
+  type Bus = {
+    color: string;
+    model: boolean;
+    price: number;
+  };
+
+  type BusTypeChanger<BusType> = {
+    [key in keyof BusType]: string | number;
+  };
+
+  type newBusType = BusTypeChanger<Bus>;
+
+  // homework 2
+  /*
+    (숙제2) 이런 변환기는 어떻게 만들어야할까요?
+    object안에 들어있는 모든 속성을
+    string, number 이렇게 고정된 타입으로 변환해주는게 아니라
+    내가 원하는 타입을 입력하면 그걸로 변환해주는 범용성 좋은 변환기를 만들어보십시오.
+   */
+
+  type Bus2 = {
+    color: string;
+    model: boolean;
+    price: number;
+  };
+
+  type TypeChanger2<MyType, T> = {
+    [key in keyof MyType]: T;
+  };
+
+  type NewBus = TypeChanger2<Bus2, boolean>;
+  type NewBus2 = TypeChanger2<Bus2, string[] | number>;
+}
+console.log('--------------- end of #13 ---------------\n\n');
