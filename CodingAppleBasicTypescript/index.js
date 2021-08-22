@@ -806,3 +806,17 @@ console.log('--------------- #10 ---------------\n\n');
     var age_2 = 33;
 }
 console.log('--------------- end of #10 ---------------\n\n');
+// ## 11. implements
+console.log('--------------- #11 ---------------\n\n');
+{
+    // CarType에 포함된 내용이 Car class에 구현이 됐는지 확인하는 작업
+    var Car = /** @class */ (function () {
+        function Car(model) {
+            this.model = model;
+        }
+        return Car;
+    }());
+    var boongBoongCar = new Car('morning');
+    console.log(boongBoongCar);
+}
+console.log('--------------- end of #11 ---------------\n\n');

@@ -1050,3 +1050,22 @@ console.log('--------------- #10 ---------------\n\n');
   let age: GlobalAge = 33;
 }
 console.log('--------------- end of #10 ---------------\n\n');
+
+// ## 11. implements
+console.log('--------------- #11 ---------------\n\n');
+{
+  interface CarType {
+    model: string;
+    price: number;
+  }
+
+  // CarType에 포함된 내용이 Car class에 구현이 됐는지 확인하는 작업
+  class Car implements CarType {
+    price: number;
+    constructor(public model: string) {}
+  }
+
+  let boongBoongCar = new Car('morning');
+  console.log(boongBoongCar);
+}
+console.log('--------------- end of #11 ---------------\n\n');
