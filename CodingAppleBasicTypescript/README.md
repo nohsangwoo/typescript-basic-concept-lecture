@@ -74,4 +74,18 @@ tsc -w
 
 ## 7. typescript generic
 
-## 8. array 자료에 붙일 수 있는 tuple type
+## 8. tuple type on Array
+
+## 9. 외부 파일 이용시 declare & 이상한 특징인 ambient module
+
+- ambient module
+  파일 내부에 export문이 없다면 해당 파일은 자동으로 글로벌모듈로 설정돼서 해당 파일 안에서 사용하는 변수들은 import없이 어디서든 끌어다 쓸수있고 또한 해당 파일에서 변수명을 지정할때는 중복에 유의 해야한다.
+- 위 글로벌 모듈을 막으려먼 export {}처럼 export의 내용이 없더라도
+  export문만 있다면 로컬 모듈로 속성이 변경된다.
+- 로컬 모듈로 전환한 상태에서 글로벌 속성의 타입스크립트를 사용하고싶다면 아래와 같이 사용하면 된다.
+
+```
+declare global {
+  type Dog : string;
+}
+```

@@ -647,8 +647,8 @@ console.log('--------------- #7 ---------------');
     function genericTSFunction(x) {
         return x[0];
     }
-    var a = genericTSFunction([4, 2]);
-    console.log(a);
+    var a_1 = genericTSFunction([4, 2]);
+    console.log(a_1);
     // 두개 이상의 타입을 generic으로 받기
     // @ts-ignore
     function genericTSFunction2(numArr, name) {
@@ -788,3 +788,11 @@ console.log('--------------- #8 ---------------');
     console.log(homework4('b', 5, 6, 8, 'a'));
 }
 console.log('--------------- end of #8 ---------------\n\n');
+// ts파일 불러오고싶을땐 그냥 import한다
+var data2_1 = require("./data2");
+{
+    // index.html에서 script로 data.js를 불러온 상태
+    // 브라우저에서는 작동이 잘된다. 그러나 ts파일에선 a의 출처를 알수없으니 에러를 뿜
+    // console.log(a + 1);
+    console.log(data2_1.c);
+}

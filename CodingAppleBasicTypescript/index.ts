@@ -1024,3 +1024,17 @@ console.log('--------------- #8 ---------------');
   console.log(homework4('b', 5, 6, 8, 'a'));
 }
 console.log('--------------- end of #8 ---------------\n\n');
+
+// ##9. 외부 파일 이용시 declare & 이상한 특징인 ambient module
+// 변수 재정의 하기
+// typescript 파일을 위한 hint같은 개념이라서 js파일로 컴파일시 declare부분은 사라진다.
+declare let a: number;
+// ts파일 불러오고싶을땐 그냥 import한다
+import { c } from './data2';
+{
+  // index.html에서 script로 data.js를 불러온 상태
+  // 브라우저에서는 작동이 잘된다. 그러나 ts파일에선 a의 출처를 알수없으니 에러를 뿜
+  // console.log(a + 1);
+
+  console.log(c);
+}
